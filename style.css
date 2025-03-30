@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Love+Light&display=swap');
+
+:root {
+  --bg-main: #060606;
+
+  --fg-main: #A50000;
+  --fg-main2: #9F2C34;
+  --fg-main3: #200000;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--fg-main);
+  font-size: 64px;
+  font-family: "Love Light", cursive;
+}
+
+@keyframes title-in {
+  from {
+    opacity: 0;
+    transform: translateY(1vh);
+    color: var(--bg-main);
+    filter: blur(10vh);
+  }
+
+  50% {
+    opacity: 70%;
+    color: var(--fg-main);
+    filter: blur(3vh);
+    text-shadow: 0 0 80vh var(--fg-main);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-1vh);
+    color: var(--bg-main);
+    filter: blur(10vh);
+  }
+}
+
+.titleblock {
+  position: fixed;
+  left: 0;
+  top: 20vh;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  font-family: "Love Light", cursive;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 50vh;
+  /* text-shadow: 1vh 1vh 1vh #000; */
+  user-select: none;
+  opacity: 0;
+  animation: title-in 3.0s cubic-bezier(0, 1, 1, 1);
+  animation-delay: 0.8s;
+  animation-fill-mode: both;
+}
+
+@keyframes content-in {
+  from {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+.contentblock {
+  animation: content-in 0.1s ease-in-out;
+  animation-delay: 3.4s;
+  animation-fill-mode: both;
+
+  padding: 12px;
+}
