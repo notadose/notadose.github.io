@@ -1,26 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Love+Light&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
+
 :root {
   --bg-main: #060606;
 
   --fg-main: #A50000;
   --fg-main2: #9F2C34;
   --fg-main3: #200000;
-  
+
   font-family: "Qwigley", cursive;
   font-size: 24px;
 }
 
 * {
-  margin:0;
+  margin: 0;
 }
 
-*::selection{
+*::selection {
   background: #ffa0bb;
   color: #00bbff;
 }
 
-*:active::selection{
+*:active::selection {
   color: #fff;
 }
 
@@ -36,7 +37,10 @@ h2 {
   text-align: center;
 }
 
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
   text-align: center;
 }
 
@@ -48,7 +52,7 @@ p {
 body {
   background-color: var(--bg-main);
   color: var(--fg-main);
-  display:flex;
+  display: flex;
 }
 
 @keyframes title-in {
@@ -75,15 +79,15 @@ body {
 
 .titleblock {
   font-family: "Love Light", cursive;
-  
+
   position: fixed;
   left: 50%;
   top: 0;
   width: 100%;
   height: 100%;
-  
-  transform:translateX(-50%);
-  
+
+  transform: translateX(-50%);
+
   overflow: clip;
   text-align: center;
   font-family: "Love Light", cursive;
@@ -94,6 +98,7 @@ body {
 
   background-color: var(--fg-main);
   min-width: max-content;
+  z-index: 0;
 }
 
 .titleblock .outer {
@@ -145,8 +150,43 @@ body {
   }
 }
 
+.bgblock {
+  animation: content-in 1.1s ease-in-out;
+  animation-delay: 2.4s;
+  animation-fill-mode: both;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  z-index: 1;
+
+  /* filter: grayscale(); */
+
+  --actually-real-bg-image: url('bg/knife.webp');
+
+  background-image: radial-gradient(#000000e6 40%, #000000d0 100%), linear-gradient(#fbb), var(--actually-real-bg-image);
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-blend-mode: normal, multiply, normal;
+  pointer-events: none;
+}
+
+.bgblock::after {
+  content: "*background images from Slay the Princess by Black Tabby Games. i love u";
+  position: absolute;
+  left: 48px;
+  bottom: 48px;
+  color: #ffffff28;
+  font-size: 24px;
+  pointer-events: none;
+  user-select: none;
+}
+
 .contentblock {
-  animation: content-in 0.1s ease-in-out;
+  animation: content-in 0.4s ease-in-out;
   animation-delay: 3.4s;
   animation-fill-mode: both;
 
@@ -156,6 +196,8 @@ body {
   align-items: center;
   gap: 48px;
   width: 100%;
+
+  z-index: 2;
 }
 
 .contentblock .surface {
