@@ -1,0 +1,213 @@
+@import url('https://fonts.googleapis.com/css2?family=Love+Light&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
+
+:root {
+  --bg-main: #060606;
+
+  --fg-main: #A50000;
+  --fg-main2: #9F2C34;
+  --fg-main3: #200000;
+
+  font-family: "Qwigley", cursive;
+  font-size: 24px;
+}
+
+* {
+  margin: 0;
+}
+
+*::selection {
+  background: #ffa0bb;
+  color: #00bbff;
+}
+
+*:active::selection {
+  color: #fff;
+}
+
+h1 {
+  font-size: 80px;
+  font-family: "Love Light", cursive;
+  text-align: center;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  text-align: center;
+}
+
+p {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--fg-main);
+  display: flex;
+}
+
+@keyframes title-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.5vw);
+    /* color: var(--bg-main); */
+    filter: blur(4vw);
+  }
+
+  50% {
+    opacity: 100%;
+    /* color: var(--fg-main); */
+    filter: blur(0.2vw);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-0.5vw);
+    /* color: var(--bg-main); */
+    filter: blur(4vw);
+  }
+}
+
+.titleblock {
+  font-family: "Love Light", cursive;
+
+  position: fixed;
+  left: 50%;
+  top: 0;
+  width: 100%;
+  height: 100%;
+
+  transform: translateX(-50%);
+
+  overflow: clip;
+  text-align: center;
+  font-family: "Love Light", cursive;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 30vw;
+  user-select: none;
+
+  background-color: var(--fg-main);
+  min-width: max-content;
+  z-index: 0;
+}
+
+.titleblock .outer {
+  width: 100%;
+  height: 100%;
+  background-image:
+    radial-gradient(circle at center,
+      #fff var(--stop1),
+      transparent var(--stop2)),
+    radial-gradient(circle at center,
+      #fff var(--stop1),
+      transparent var(--stop2));
+
+  --stop1: 0.025vw;
+  --stop2: 0.25vw;
+
+  background-size: 0.3vw 0.3vw;
+  background-position: 0 0, 0.15vw 0.15vw;
+  background-repeat: repeat;
+  background-color: #000;
+  filter: contrast(50);
+  mix-blend-mode: multiply;
+}
+
+.titleblock .inner {
+  width: 100%;
+  height: 100%;
+  mix-blend-mode: multiply;
+  background-color: #000;
+  animation-fill-mode: both;
+}
+
+.titleblock .inner2 {
+  color: transparent;
+  text-shadow: 0 0 1vw #fff;
+  animation: title-in 3.0s cubic-bezier(0, 1, 1, 1);
+  animation-fill-mode: both;
+  animation-delay: 0.8s;
+}
+
+@keyframes content-in {
+  from {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+.bgblock {
+  animation: content-in 1.1s ease-in-out;
+  animation-delay: 2.4s;
+  animation-fill-mode: both;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+
+  z-index: 1;
+
+  /* filter: grayscale(); */
+
+  --actually-real-bg-image: url('bg/knife.webp');
+
+  background-image: radial-gradient(#000000e6 40%, #000000d0 100%), linear-gradient(#fbb), var(--actually-real-bg-image);
+  background-size: cover, cover, cover;
+  background-position: center, center, center;
+  background-blend-mode: normal, multiply, normal;
+  pointer-events: none;
+}
+
+.bgblock::after {
+  content: "*background images from Slay the Princess by Black Tabby Games. i love u";
+  position: absolute;
+  left: 48px;
+  bottom: 48px;
+  color: #ffffff28;
+  font-size: 24px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.contentblock {
+  animation: content-in 0.4s ease-in-out;
+  animation-delay: 3.4s;
+  animation-fill-mode: both;
+
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  width: 100%;
+
+  z-index: 2;
+}
+
+.contentblock .surface {
+  min-width: 30%;
+  max-width: 80%;
+  border: var(--fg-main) solid 1px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 10px;
+  padding-bottom: 0px;
+  box-sizing: border-box;
+  box-shadow: 4px 4px var(--fg-main);
+}

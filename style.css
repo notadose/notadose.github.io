@@ -8,21 +8,12 @@
   --fg-main2: #9F2C34;
   --fg-main3: #200000;
 
+  --hb-time: 0; /* range 0-1, animate with js PLEASE*/
+  /* --hb-count: 0; */
+  --hb-first: true;
+
   font-family: "Qwigley", cursive;
   font-size: 24px;
-}
-
-* {
-  margin: 0;
-}
-
-*::selection {
-  background: #ffa0bb;
-  color: #00bbff;
-}
-
-*:active::selection {
-  color: #fff;
 }
 
 h1 {
@@ -49,61 +40,24 @@ p {
   margin-bottom: 12px;
 }
 
-body {
-  background-color: var(--bg-main);
-  color: var(--fg-main);
-  display: flex;
+.dots{
+  position:fixed;
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
+  background-color: #300;
 }
 
-@keyframes title-in {
-  from {
-    opacity: 0;
-    transform: translateY(0.5vw);
-    /* color: var(--bg-main); */
-    filter: blur(4vw);
-  }
+.dots .outer {
+  position:absolute;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
 
-  50% {
-    opacity: 100%;
-    /* color: var(--fg-main); */
-    filter: blur(0.2vw);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-0.5vw);
-    /* color: var(--bg-main); */
-    filter: blur(4vw);
-  }
-}
-
-.titleblock {
-  font-family: "Love Light", cursive;
-
-  position: fixed;
-  left: 50%;
-  top: 0;
-  width: 100%;
-  height: 100%;
-
-  transform: translateX(-50%);
-
-  overflow: clip;
-  text-align: center;
-  font-family: "Love Light", cursive;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 30vw;
-  user-select: none;
-
-  background-color: var(--fg-main);
-  min-width: max-content;
-  z-index: 0;
-}
-
-.titleblock .outer {
-  width: 100%;
-  height: 100%;
+  --pulse-max: max(110vw, 110vh);
+  
   background-image:
     radial-gradient(circle at center,
       #fff var(--stop1),
@@ -112,102 +66,39 @@ body {
       #fff var(--stop1),
       transparent var(--stop2));
 
-  --stop1: 0.025vw;
-  --stop2: 0.25vw;
+  --stop1: calc(0.00025 * var(--pulse-max));
+  --stop2: calc(0.005 * var(--pulse-max));
 
-  background-size: 0.3vw 0.3vw;
-  background-position: 0 0, 0.15vw 0.15vw;
+  background-size: calc(0.01 * var(--pulse-max)) calc(0.01 * var(--pulse-max));
+  background-position: 0 0, calc(0.005 * var(--pulse-max)) calc(0.005 * var(--pulse-max));
   background-repeat: repeat;
   background-color: #000;
-  filter: contrast(50);
+  filter: contrast(50) blur(0.01vw);
   mix-blend-mode: multiply;
 }
 
-.titleblock .inner {
-  width: 100%;
-  height: 100%;
+.dots .inner {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+
   mix-blend-mode: multiply;
   background-color: #000;
-  animation-fill-mode: both;
 }
 
-.titleblock .inner2 {
-  color: transparent;
-  text-shadow: 0 0 1vw #fff;
-  animation: title-in 3.0s cubic-bezier(0, 1, 1, 1);
-  animation-fill-mode: both;
-  animation-delay: 0.8s;
-}
+.dots .inner2 {
+  position:absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
 
-@keyframes content-in {
-  from {
-    opacity: 0;
-    pointer-events: none;
-  }
+  background-image:
+    radial-gradient(circle at 10% 10%, transparent calc(var(--hb-time) * var(--pulse-max) * 0.5 - 8vw / (var(--hb-time) + 0.01)), #fff calc(var(--hb-time) * var(--pulse-max) * 0.5 - 4vw / (var(--hb-time) + 0.01)), transparent calc(var(--hb-time) * var(--pulse-max) * 0.5)),
+    radial-gradient(circle at 10% 10%, transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 8vw / (var(--hb-time) + 1.01)), #fff calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 4vw / (var(--hb-time) + 1.01)), transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5))
+    ;
 
-  to {
-    opacity: 100%;
-  }
-}
-
-.bgblock {
-  animation: content-in 1.1s ease-in-out;
-  animation-delay: 2.4s;
-  animation-fill-mode: both;
-
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-
-  z-index: 1;
-
-  /* filter: grayscale(); */
-
-  --actually-real-bg-image: url('bg/knife.webp');
-
-  background-image: radial-gradient(#000000e6 40%, #000000d0 100%), linear-gradient(#fbb), var(--actually-real-bg-image);
-  background-size: cover, cover, cover;
-  background-position: center, center, center;
-  background-blend-mode: normal, multiply, normal;
-  pointer-events: none;
-}
-
-.bgblock::after {
-  content: "*background images from Slay the Princess by Black Tabby Games. i love u";
-  position: absolute;
-  left: 48px;
-  bottom: 48px;
-  color: #ffffff28;
-  font-size: 24px;
-  pointer-events: none;
-  user-select: none;
-}
-
-.contentblock {
-  animation: content-in 0.4s ease-in-out;
-  animation-delay: 3.4s;
-  animation-fill-mode: both;
-
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 48px;
-  width: 100%;
-
-  z-index: 2;
-}
-
-.contentblock .surface {
-  min-width: 30%;
-  max-width: 80%;
-  border: var(--fg-main) solid 1px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-  padding-bottom: 0px;
-  box-sizing: border-box;
-  box-shadow: 4px 4px var(--fg-main);
+  background-size: 100% 100%, calc(100% * (1-var(--hb-first))) calc(100% * (1-var(--hb-first)));
 }
