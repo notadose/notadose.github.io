@@ -51,7 +51,6 @@ p {
 }
 
 .dots{
-  pointer-events:none;
   position:fixed;
   left:0;
   right:0;
@@ -112,6 +111,7 @@ p {
     radial-gradient(circle at 10% 10%, transparent calc(var(--hb-time) * var(--pulse-max) * 0.5 - 12vw / (var(--hb-time) + 0.1)), #fff calc(var(--hb-time) * var(--pulse-max) * 0.5 - 6vw / (var(--hb-time) + 0.1)), transparent calc(var(--hb-time) * var(--pulse-max) * 0.5)),
     radial-gradient(circle at 10% 10%, transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 12vw / (var(--hb-time) + 1.1)), #fff calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 6vw / (var(--hb-time) + 1.1)), transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5))
     ;
+  pointer-events:none;
 }
 
 @keyframes title-in {
@@ -179,6 +179,7 @@ p {
   background:linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 60%, rgba(0, 0, 0, 0.3) 80%, rgba(0, 0, 0, 0) 90%);
   background-size: 100% 100%;
   z-index: 0;
+  pointer-events:none;
 }
 
 .content{
