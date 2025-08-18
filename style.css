@@ -51,13 +51,13 @@ p {
 }
 
 .dots{
+  pointer-events:none;
   position:fixed;
   left:0;
   right:0;
   top:0;
   bottom:0;
   background-color: #300;
-
 }
 
 .dots .outer {
@@ -150,6 +150,24 @@ p {
   animation-delay: 0.8s;
   pointer-events:none;
   z-index: 1;
+}
+
+.dots .dotheart{
+  position:absolute;
+  left:5%;
+  width: 40vw;
+  top:10%;
+  bottom:10%;
+
+  z-index: -2;
+
+  background-image:url("Assets/heart.webp");
+  filter: brightness(60%);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position:center;
+
+  animation: fade-in 6s linear;
 }
 
 .contentmask{
