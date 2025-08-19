@@ -2,15 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Qwigley&display=swap');
 
 :root {
-  --bg-main: #060606;
-
-  --fg-main: #A50000;
-  --fg-main2: #9F2C34;
-  --fg-main3: #200000;
-
   --hb-time: 0; /* range 0-1, animate with js PLEASE*/
-  /* --hb-count: 0; */
-  --hb-first: true;
 
   font-family: "Qwigley", cursive;
   font-size: 2vw;
@@ -68,21 +60,41 @@ p {
 
   --pulse-max: max(110vw, 110vh);
   
-  background-image:
-    radial-gradient(circle at center,
-      #fff var(--stop1),
-      transparent var(--stop2)),
-    radial-gradient(circle at center,
-      #fff var(--stop1),
-      transparent var(--stop2));
+  --white: 255, 255, 255;
+  background-color: rgba(127, 127, 127, 1);
 
+  background-image:
+  radial-gradient(
+    rgba(var(--white), 1) 0%,
+    rgba(var(--white), calc(0.9*0.9)) 10%,
+    rgba(var(--white), calc(0.8*0.8)) 20%,
+    rgba(var(--white), calc(0.7*0.7)) 30%,
+    rgba(var(--white), calc(0.6*0.6)) 40%,
+    rgba(var(--white), calc(0.5*0.5)) 50%,
+    rgba(var(--white), calc(0.4*0.4)) 60%,
+    rgba(var(--white), calc(0.3*0.3)) 70%,
+    rgba(var(--white), calc(0.2*0.2)) 80%,
+    rgba(var(--white), calc(0.1*0.1)) 90%,
+    rgba(var(--white), 0) 100%),
+  radial-gradient(
+    rgba(var(--white), 1) 0%,
+    rgba(var(--white), calc(0.9*0.9)) 10%,
+    rgba(var(--white), calc(0.8*0.8)) 20%,
+    rgba(var(--white), calc(0.7*0.7)) 30%,
+    rgba(var(--white), calc(0.6*0.6)) 40%,
+    rgba(var(--white), calc(0.5*0.5)) 50%,
+    rgba(var(--white), calc(0.4*0.4)) 60%,
+    rgba(var(--white), calc(0.3*0.3)) 70%,
+    rgba(var(--white), calc(0.2*0.2)) 80%,
+    rgba(var(--white), calc(0.1*0.1)) 90%,
+    rgba(var(--white), 0) 100%
+  );
   --stop1: calc(0.000125 * var(--pulse-max));
   --stop2: calc(0.0025 * var(--pulse-max));
 
   background-size: calc(0.005 * var(--pulse-max)) calc(0.005 * var(--pulse-max));
   background-position: 0 0, calc(0.0025 * var(--pulse-max)) calc(0.0025 * var(--pulse-max));
   background-repeat: repeat;
-  background-color: #000;
   filter: contrast(50) blur(0.01vw);
   mix-blend-mode: multiply;
 }
@@ -98,7 +110,7 @@ p {
   background-color: #000;
 }
 
-.dots .inner2 {
+.dots .pulser {
   position:absolute;
   top:0;
   bottom:0;
@@ -106,10 +118,14 @@ p {
   right:0;
 
   animation: fade-in 6s linear;
+  z-index:0;
+
+  --pulse-color-1: rgba(255, 255, 255, calc(1 - var(--hb-time) * 0.2));
+  --pulse-color-2: rgba(255, 255, 255, calc(0.8 - var(--hb-time) * 0.2));
 
   background-image:
-    radial-gradient(circle at 10% 10%, transparent calc(var(--hb-time) * var(--pulse-max) * 0.5 - 12vw / (var(--hb-time) + 0.1)), #fff calc(var(--hb-time) * var(--pulse-max) * 0.5 - 6vw / (var(--hb-time) + 0.1)), transparent calc(var(--hb-time) * var(--pulse-max) * 0.5)),
-    radial-gradient(circle at 10% 10%, transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 12vw / (var(--hb-time) + 1.1)), #fff calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 6vw / (var(--hb-time) + 1.1)), transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5))
+    radial-gradient(circle at 10% 10%, transparent calc(var(--hb-time) * var(--pulse-max) * 0.5 - 12vw / (var(--hb-time) + 0.1)), var(--pulse-color-1) calc(var(--hb-time) * var(--pulse-max) * 0.5 - 6vw / (var(--hb-time) + 0.1)), transparent calc(var(--hb-time) * var(--pulse-max) * 0.5)),
+    radial-gradient(circle at 10% 10%, transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 12vw / (var(--hb-time) + 1.1)), var(--pulse-color-2) calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5 - 6vw / (var(--hb-time) + 1.1)), transparent calc((var(--hb-time) + 1) * var(--pulse-max) * 0.5))
     ;
   pointer-events:none;
 }
@@ -118,20 +134,17 @@ p {
   from {
     opacity: 0;
     transform: translateY(0.5vw);
-    /* color: var(--bg-main); */
     filter: blur(4vw);
   }
 
   50% {
     opacity: 100%;
-    /* color: var(--fg-main); */
     filter: blur(0.2vw);
   }
 
   to {
     opacity: 0;
     transform: translateY(-0.5vw);
-    /* color: var(--bg-main); */
     filter: blur(4vw);
   }
 }
