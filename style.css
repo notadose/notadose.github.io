@@ -89,8 +89,6 @@ p {
     rgba(var(--white), calc(0.1*0.1)) 90%,
     rgba(var(--white), 0) 100%
   );
-  --stop1: calc(0.000125 * var(--pulse-max));
-  --stop2: calc(0.0025 * var(--pulse-max));
 
   background-size: calc(0.005 * var(--pulse-max)) calc(0.005 * var(--pulse-max));
   background-position: 0 0, calc(0.0025 * var(--pulse-max)) calc(0.0025 * var(--pulse-max));
@@ -156,8 +154,9 @@ p {
   top:0;
   text-align:center;
   font-size: 50vw;
+  font-weight: bold;
   color: transparent;
-  text-shadow: 0 0 1vw #fff;
+  text-shadow: 0 0 2vw #ddd;
   animation: title-in 3.0s cubic-bezier(0, 1, 1, 1);
   animation-fill-mode: both;
   animation-delay: 0.8s;
